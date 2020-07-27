@@ -1,0 +1,24 @@
+---
+title: "the report of pedestrians walking around Melbourne"
+author: "chenjie Gong"
+date: "23/07/2020"
+output: pdf_document
+---
+tinytex::install_tinytex()
+```{r}
+library("rwalkr")
+start_date=as.Date("2017-07-01")
+ped_walk=melb_walk(from = start_date, to = start_date + 6L)
+library("ggplot2")
+ggplot(data=subset(ped_walk, Sensor == "Melbourne Central")) +
+  geom_point(aes(x = Time, y = Count),shape=I('triangle'))
+```
+Through one day of observation, the number of pedestrians between 11 am and 5 pm
+*table*
+```{r echo=FALSE,results='asis'}
+library("knitr")
+kable(ped_walk[9:15,])
+```      
+*equation*
+$$J_\alpha(x) = \sum_{m=0}^\infty \frac{(-1)^m}{m! \Gamma (m + \alpha + 1)} {\left({ \frac{x}{2} }\right)}^{2m + \alpha} \text {，chenjie online code^-^}$$
+#end#
